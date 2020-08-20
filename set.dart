@@ -31,6 +31,17 @@ void printSetC() {
   print('this elements length ${elements.length}');
 }
 
+void setObj() {
+  var seta = Set<num>();
+  seta.add(1);
+
+  Set<String> setb = {};
+  setb.add('2');
+
+  print('this is seta $seta');
+  print('this is setb $setb');
+}
+
 // set const
 void printSetD() {
   var set = const <String>{'a', 'b', 'c'};
@@ -40,5 +51,7 @@ void printSetD() {
 void main() {
   // printSeta();
   //printSetb();
-  printSetD();
+  // printSetD();
+
+  setObj();
 }
