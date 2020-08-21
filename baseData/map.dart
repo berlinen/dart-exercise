@@ -33,11 +33,21 @@ void mapobj() {
   print('this is gifts $gifts');
   print('this is maps $maps');
   print('this is gifts third ${gifts['third']}');
+  print('this is gifts length ${gifts.length}');
+}
+
+void constMap() {
+  const constMap = const <num, num>{
+    1: 1,
+  };
+
+  print('this is const map $constMap');
 }
 
 void main(List<String> args) {
   // print('args $args');
   // printMapA();
 
-  mapobj();
+  // mapobj();
+  constMap();
 }
