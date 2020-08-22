@@ -51,10 +51,25 @@ String say(String from, String msg, [String device]){
   return result;
 }
 
-void main(List<String> args) {
-  // 调用函数
-  print( 'enableFlags ${enableFlags(bold: true, hidden: false)}');
+// 默认参数值
+/**
+ * 在定义方法的时候，可以使用 = 来定义可选参数的默认值。
+ * 默认值只能是编译时常量。
+ * 如果没有提供默认值，则默认值为 null。
+ */
+
+void enableFlag({bool blod = false, bool hidden = false}) {
+  print('the result is ${blod && hidden}');
 }
+
+
+
+// void main(List<String> args) {
+//   // 调用函数
+//   // print( 'enableFlags ${enableFlags(bold: true, hidden: false)}');
+//   // print('the result is ${say('wangwei', 'hello', 'apple')}');
+//   enableFlag(blod: false);
+// }
 
 
 
