@@ -9,6 +9,12 @@ class A {
   void baz() {}
 }
 
+// 返回值
+
+// 所有函数都会返回一个值。 如果没有明确指定返回值， 函数体会被隐式的添加 return null; 语句。
+
+bar() {}
+
 void main() {
   var x;
 
@@ -33,4 +39,7 @@ void main() {
   // 两个闭包引用的非同一个实例，
   // 所以它们不相等。
   print('v.baz != w.baz ? ${v.baz != w.baz}');
+
+  print('bar == null ? ${bar() == null}');
 }
+
