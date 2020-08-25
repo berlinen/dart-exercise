@@ -20,6 +20,15 @@ void demo2() {
   callbacks.forEach((c) => c());
 }
 
+// 实现了 Iterable 的类（比如， List 和 Set）同样也支持使用 for-in 进行迭代操作 iteration ：
+
+void demo3() {
+  var collection = [0, 1, 2];
+  for (var x in collection) {
+    print(x); // 0 1 2
+  }
+}
+
 void main(List<String> args) {
   demo2();
 }
