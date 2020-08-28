@@ -96,3 +96,15 @@ try {
   cleanLlamaStalls();
 }
 ```
+
+任何匹配的 catch 执行完成后，再执行 finally ：
+
+```dart
+try {
+  breedMoreLlamas();
+} catch (e) {
+  print('Error: $e'); // Handle the exception first.
+} finally {
+  cleanLlamaStalls(); // Then clean up.
+}
+```
