@@ -103,4 +103,59 @@ main() {
 }
 ```
 
+由于父类的构造函数参数在构造函数执行之前执行， 所以参数可以是一个表达式或者一个方法调用：
+
+```dart
+class Employee extends Person {
+  Employee() : super.fromJson(getDefaultData());
+  // ···
+}
+```
+
+:::warn 警告：调用父类构造函数的参数无法访问 this 。 例如，参数可以为静态函数但是不能是实例函数。
+
+### 初始化列表
+
+除了调用超类构造函数之外， 还可以在构造函数体执行之前初始化实例变量。 各参数的初始化用逗号分隔。
+
+```dart
+// 在构造函数体执行之前，
+// 通过初始列表设置实例变量。
+Point.fromJson(Map<String, num> json)
+    : x = json['x'],
+      y = json['y'] {
+  print('In Point.fromJson(): ($x, $y)');
+}
+```
+
+:::warn 警告： 初始化程序的右侧无法访问 this 。
+
+在开发期间， 可以使用 assert 来验证输入的初始化列表。
+
+```dart
+Point.withAssert(this.x, this.y) : assert(x >= 0) {
+  print('In Point.withAssert(): ($x, $y)');
+}
+```
+
+使用初始化列表可以很方便的设置 final 字段。 下面示例演示了，如何使用初始化列表初始化设置三个 final 字段。
+
+```dart
+final num x;
+final num y;
+final num distanceFromOrigin;
+
+Point(x, y)
+ : x = x,
+  y = y,
+  distanceFromOrigin = sqrt(x * x + y * y);
+  
+}
+
+main() {
+  var p = new Point(2, 3);
+  print(p.distanceFromOrigin);
+}
+```
+
 
