@@ -59,3 +59,5 @@ var b = ImmutablePoint(1, 1); // 创建一个非常量对象
 
 assert(!identical(a, b)); // 两者不是同一个实例!
 ```
+
+::: 在 Dart 2 中，一个常量上下文中的 const 关键字可以被省略。
