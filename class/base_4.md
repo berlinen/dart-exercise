@@ -149,7 +149,6 @@ Point(x, y)
  : x = x,
   y = y,
   distanceFromOrigin = sqrt(x * x + y * y);
-  
 }
 
 main() {
@@ -158,4 +157,19 @@ main() {
 }
 ```
 
+### 重定向构造函数
 
+有时构造函数的唯一目的是重定向到同一个类中的另一个构造函数。 重定向构造函数的函数体为空， 构造函数的调用在冒号 (:) 之后。
+
+
+```dart
+class Point {
+  num x, y;
+
+  // 类的主构造函数。
+  Point(this.x, this.y);
+
+  // 指向主构造函数
+  Point.alongXAxis(num x) : this(x, 0);
+}
+```
