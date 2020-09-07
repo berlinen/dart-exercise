@@ -173,3 +173,63 @@ class Point {
   Point.alongXAxis(num x) : this(x, 0);
 }
 ```
+
+### 常量构造函数
+
+如果该类生成的对象是固定不变的， 那么就可以把这些对象定义为编译时常量。 为此，需要定义一个 const 构造函数， 并且声明所有实例变量为 final。
+
+```dart
+class ImmutablePoint {
+  static final ImmutablePoint origin =
+      const ImmutablePoint(0, 0);
+
+  final num x, y;
+
+  const ImmutablePoint(this.x, this.y);
+}
+```
+
+常量构造函数创建的实例并不总是常量。
+
+### 工厂构造函数
+
+当执行构造函数并不总是创建这个类的一个新实例时，则使用 factory 关键字。 例如，一个工厂构造函数可能会返回一个 cache 中的实例， 或者可能返回一个子类的实例。
+
+以下示例演示了从缓存中返回对象的工厂构造函数：
+
+```dart
+class Logger {
+  final String name;
+  bool mute = false;
+
+  // 从命名的 _ 可以知，
+  // _cache 是私有属性。
+  static final Map<String, Logger> _cache =
+      <String, Logger>{};
+
+  factory Logger(String name) {
+    if (_cache.containsKey(name)) {
+      return _cache[name];
+    } else {
+      final logger = Logger._internal(name);
+      _cache[name] = logger;
+      return logger;
+    }
+  }
+
+  Logger._internal(this.name);
+
+  void log(String msg) {
+    if (!mute) print(msg);
+  }
+}
+```
+
+:::tip  工厂构造函数无法访问 this。
+
+工厂构造函的调用方式与其他构造函数一样:
+
+```dart
+var logger = Logger('UI');
+logger.log('Button clicked');
+```
